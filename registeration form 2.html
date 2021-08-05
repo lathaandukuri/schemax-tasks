@@ -1,0 +1,109 @@
+<html>  
+<head>  
+<meta name="viewport" content="width=device-width, initial-scale=1">  
+<style>  
+body{  
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif, Helvetica, sans-serif;  
+  background-color: rgb(61, 19, 211);  
+}  
+.container {  
+    padding: 50px;  
+  background-color: rgb(179, 222, 240);  
+}  
+  
+input[type=text] {  
+  width: 100%;  
+  padding: 15px;  
+  margin: 5px 0 22px 0;  
+  display: inline-block;  
+  border: none;  
+  background: #f1f1f1;  
+}  
+input[type=text]:focus{  
+  background-color: orange;  
+  outline: none;  
+}  
+ div {  
+            padding: 10px 0;  
+         }  
+hr {  
+  border: 1px solid #f1f1f1;  
+  margin-bottom: 25px;  
+}  
+button {  
+  background-color: #4CAF50;  
+  color: white;  
+  padding: 16px 20px;  
+  margin: 8px 0;  
+  border: none;  
+  cursor: pointer;  
+  width: 10%;  
+  opacity: 0.9;  
+}  
+button:hover {  
+  opacity: 1;  
+}  
+</style>  
+</head>  
+<body>  
+<form>  
+  <div class="container">  
+  <center>  <h1> Student Registeration Form</h1> </center>    
+  <hr><label> FIRST NAME: </label> <br>  
+<input type="text" id="firstname" placeholder= "Firstname" size="15" required /><br>      
+<label> LAST NAME: </label><br>    
+<input type="text"id="lname" placeholder="Lastname" size="15"required />   
+<label> FATHER NAME </label> <br>  
+<input type="text" id="fname" placeholder= "Father name" size="15" required /><br>      
+<label> MOTHER NAME: </label><br>    
+<input type="text" id="mname" placeholder="Mother name" size="15"required />   
+<label> ADHAAR NO.: </label><br>    
+<input type="text" id="adhaar" placeholder="Unique Adhaar number" size="15"required />   
+
+<label>Phone No :  </label> <br>   
+<input id="pno" type="text" name="phone" placeholder="phone number" size="10" required/> <br>  
+<div>  
+<label>   
+Course :  
+</label>   
+<select >  
+<option value="Course">Course</option>  
+<option value="MERN">MERN</option>  
+<option value="MEAN">MEAN</option>  
+<option value="REACT">REACT</option>  
+<option value="ANGULAR">ANGULAR</option>  
+</select>  
+</div>  
+<label>   
+ <br><center><button onclick="submission">Submit</button></center>   
+</form>  
+</body> 
+<script>
+function submission()
+{
+  var fn=document.getElementById("firstname").value;
+  
+  var fa=document.getElementById("lname").value;
+  
+  var m=document.getElementById("mname").value;
+  
+  var a=document.getElementById("adhaar").value;
+  
+  var p=document.getElementById("pno").value;
+  var arr = [];
+
+    if (!arr.contains(a)) 
+    {
+      arr.push(a);
+      alert('you have successfully registered');
+      
+    } 
+    else
+    {
+      alert('the adhaar number already exists');
+      
+    }
+    console.log(arr);
+}
+</script> 
+</html>
