@@ -1,0 +1,99 @@
+<html>
+<head>
+<title>Welcome To Registration Form</title>
+<style>
+div
+{
+margin:0px auto;
+width:35%;
+padding:30px;
+background-color:rgb(238, 206, 206);
+font-size:20px;
+}
+
+input[type=text],select
+{
+width:100%;
+padding: 12px 20px; 
+border: 1px solid rgb(226, 194, 194);
+box-sizing:border-box;
+font-size:10px;
+}
+
+input[type=submit]
+{
+width:100%;
+background-color:#7f0099;
+color: white;
+padding: 14px 20px;
+margin: 8px 0;
+border:none;
+border-radius:4px;
+}
+
+input[type=submit] hover
+{
+background-color: #0a9fc9;
+}
+h1
+{
+color:rgb(255, 0, 234);
+}    
+</style>
+</head>
+<body>
+<h1 text-align:center>Registartion Form</title>
+<div id="result">
+<form name="form" method="post">
+<label for="fname">First Name </label>
+<input type="text" id="fname" name="firstname" placeholder="firstname"><br>
+<label for="lname">Last Name </label>
+<input type="text" id="lname" name="lastname" placeholder="LastName"><br>
+<label for="ftname">Father Name </label>
+<input type="text" id="ftnname" name="fathername" placeholder="father Name"><br>
+<label for="mtname">Mother Name </label>
+<input type="text" id="mtnname" name="mothername" placeholder="mother Name"><br>
+<label for="pnum">Phone Number </label>
+<input type="text" id="pnum" name="phonenumber" placeholder="PhoneNumber"><br>
+<label for="adnum">Aadhar Number </label>
+<input type="text" id="adnum" name="aadharnumber" placeholder=" AadharNumber"><br>
+
+<label for="Courses">Courses Applied </label>
+<select id="course" name="course">
+<option value="java">JAVA</option>
+<option value="jscript">JAVASCRIPT</option>
+<option value="react">REACT</option>
+<option value="angular">ANGULAR</option>
+</select><br>
+<input type="submit" value="submit">
+</form>
+</div>
+
+<script type="text/javascript">
+    const registrationData= new Map();
+    const uniquePhoneNumber=new Set();
+    const form = document.querySelector("form");
+    form.addEventListener("submit", function (event) {
+      event.preventDefault();
+      const formData =new FormData(this);
+      const entries = formData.entries();
+      const data =object.fromEntries(registrationData);
+      console.log(obj);
+      if (registrationData.has(data.adharNumber)) {
+        alert('user already exist with given aadhar');
+        return false;
+      } else {
+        if (registrationData.has(data.phoneNumber)) {
+          alert('user already exist with given phone Number');
+          return false;
+      }
+      registrationData.set(data.aadharNumber,data);
+      }
+      uniquePhoneNumber.add(data.phoneNumber)
+      alert('you have successfully register');
+      form.reset();
+      console.log(Array.from(registrationData.values()));
+    });
+    </script>
+</body>
+</html>
