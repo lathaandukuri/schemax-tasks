@@ -1,0 +1,50 @@
+<html>
+<head>
+    <script src="bmi.js"></script>
+    <style>
+    body{
+        font-family: 'Times New Roman', Times, serif;
+        background-color: rgb(90, 85, 133);
+        }
+    .container{
+       padding: 0px; 
+       background-color: rgb(210, 202, 218);
+    }
+    input[type=text],input[type=incm],textarea{
+        width: initial;
+        padding: 0px;
+        margin: initial;
+        border: initial;
+        background: rgb(77, 177, 240);
+    }
+    input[type=text],input[type=inkgs],textarea{
+        width: initial;
+        padding: 0px;
+        margin: initial;
+        border: initial;
+        background: rgb(77, 177, 240);
+    }
+    .btn{
+        background-color: rgb(140, 0, 255);
+        color: white;
+        cursor: initial;
+        width: initial;
+        padding: 0px;
+    }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <center>
+        <h1>BMI Calculator</h1>
+        <p>Height (in cm)</p>
+        <input type="text" id="height">
+        <p>Weight (in kg)</p>
+        <input type="text" id="weight">
+
+        <div><button type="calculator" class="btn" id="btn">Calculate</button></div>
+        <div id="result"></div>
+        </center>
+    </div>
+</body>
+</html>
