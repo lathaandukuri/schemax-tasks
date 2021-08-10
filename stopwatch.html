@@ -1,0 +1,98 @@
+<html>
+    <head>
+        <h1><center>stopwatch</center></h1>
+        <h2><center><time>00:00:00</time></center></h2>
+    </head>
+    <body>
+        <button id="start">START</button>
+        <button id="stop">STOP</button>
+        <button id="clear">RESET</button>
+    </body>
+    <style>
+        body {
+            color: #DAD6D6;
+            background: #f7f8f8;
+            text-align: center;
+        }
+        #start {
+            margin: 40px auto;
+            text-align: center;
+            color: #f6f9fa;
+            background: #08e463;
+            border:solid 2px #484d47;
+            border-radius:5px;
+            padding:16px 40px 16px;
+            letter-spacing: 2px;
+            cursor:pointer;
+        }
+        #stop {
+            margin: 40px 5px auto;
+            text-align: center;
+            color: #DAD6D6;
+            background: #f00b0b;
+            border:solid 2px #f58989;
+            border-radius:5px;
+            padding:16px 40px 16px;
+            letter-spacing: 2px;
+            cursor:pointer;
+        }
+        #clear {
+            margin: 40px auto;
+            text-align: center;
+            color: #DAD6D6;
+            background: #0a2df5;
+            border:solid 2px #a9a8c2;
+            border-radius:5px;
+            padding:16px 40px 16px;
+            letter-spacing: 2px;
+            cursor:pointer;
+        }
+        h2
+        {
+            font-size: 46px;
+            letter-spacing: 2px;
+            margin: 50px 0 0 ;
+            color: rgb(148, 16, 236);
+        }
+        h1
+        {
+            font-size: 56px;
+            letter-spacing: 2px;
+            margin: 30px 0 0 ;
+            color: rgb(236, 16, 199);
+        }
+        
+    </style>
+    <script>var h1 = document.getElementsByTagName('h2')[0],
+    start = document.getElementById('start'),
+    stop = document.getElementById('stop'),
+    clear = document.getElementById('clear'),
+    seconds = 0, minutes = 0, hours = 0,
+    t;
+    function add() {
+        seconds++;
+        if (seconds >= 60) {
+            seconds = 0;
+            minutes++;
+        if (minutes >= 60) {
+            minutes = 0;
+            hours++;
+        }
+    }
+    h1.textContent = (hours ? (hours > 9 ? hours : "0" + hours) : "00") + ":" + (minutes ? (minutes > 9 ? minutes : "0" + minutes) : "00") + ":" + (seconds > 9 ? seconds : "0" + seconds);
+    timer();
+}
+function timer() {
+    t = setTimeout(add, 1000);
+}
+timer();
+start.onclick = timer;
+stop.onclick = function() {
+    clearTimeout(t);
+}
+clear.onclick = function() {
+    h1.textContent = "00:00:00";
+    seconds = 0; minutes = 0; hours = 0;
+}
+</script>
+</html>
