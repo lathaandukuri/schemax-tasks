@@ -1,0 +1,175 @@
+!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div style="display: flex;justify-content: center;">
+        <form action="#">
+            <label for="fname">User Name:</label><br>
+            <input type="text" class="capital-letters" id="fname" name="fname"><br>
+            <label for="lname">Last Name:</label><br>
+            <input type="text" class="capital-letters" id="lname" name="lname"><br>
+            <label for="fatherName">Father Name:</label><br>
+            <input type="text" class="capital-letters" id="fatherName" name="fatherName"><br>
+            <label for="motherName">Mother name:</label><br>
+            <input type="text" class="capital-letters" id="motherName" name="motherName"><br>
+            <label for="phoneNumber">Phone Number:</label><br>
+            <input type="text" id="phoneNumber" name="phoneNumber"><br>
+            <label for="adharNumber">AdharNumber:</label><br>
+            <input type="text" id="adharNumber" name="adharNumber"><br>
+            <label for="coursesEnrolled">Select course:</label><br>
+            <select name="coursesEnrolled" id="coursesEnrolled">
+                <option value="">Please Select</option>
+                <option value="JS">JS</option>
+                <option value="NODEJS">NODEJS</option>
+                <option value="REACT">REACT</option>
+                <option value="ANGULAR">ANGULAR</option>
+            </select><br><br>
+            <input type="submit" value="Submit">
+        </form>
+        <br />
+    </div>
+    <div style="display: flex;justify-content: center;" id="resultTable">
+    </div>
+</body>
+<script>
+    const studentsData = new Map();
+    const uniquePhoneNumber = new Set();
+    const form = document.querySelector("form");
+    form.addEventListener("submit", function (event) {
+        event.preventDefault();
+        const formData = new FormData(this);
+        const entries = formData.entries();
+        const data = Object.fromEntries(entries);
+        if (studentsData.has(data.adharNumber)) {
+            alert('user already exist with given aadhar');
+            return false;
+        } else {
+            if (uniquePhoneNumber.has(data.phoneNumber)) {
+                alert('user already exist with given phone number');
+                return false;
+            }
+            studentsData.set(data.adharNumber, data);
+        }
+        uniquePhoneNumber.add(data.phoneNumber)
+        alert('You have successfully registerd');
+        form.reset();
+        console.log(Array.from(studentsData.values()));
+        getTableForAlreadyRegisteredPersons();
+    });
+    function getTableForAlreadyRegisteredPersons() {
+        var labels = document.getElementsByTagName("LABEL"),
+            lookup = {},
+            i, label;
+        console.log(labels);
+        for (i = 0; i < labels.length; i++) {
+            label = labels[i];
+            if (document.getElementById(label.htmlFor)) {
+                lookup[label.htmlFor] = label;
+            }
+        }
+        const studentsDataArray = Array.from(studentsData.values());
+        const studentsDataArray1 = Array.from(studentsData.values());
+        const spresOperator = [...studentsDataArray, ...studentsDataArray1];
+        function returnarray() {
+            return [userName, roles]
+        }
+        const [userName, role] = returnarray();
+        const tbl = document.createElement('table');
+        const tblHead = document.createElement('thead');
+        const tblBody = document.createElement('tbody');
+        const tableHeadRow = document.createElement('tr');
+        Object.keys(studentsDataArray[0]).forEach((key) => {
+            if (key === 'coursesEnrolled') {
+                const theadCel = document.createElement('th')
+                const cellText = document.createTextNode(lookup[key].innerHTML.split(' ')[1].slice(0, -1));
+                theadCel.appendChild(cellText);
+                tableHeadRow.appendChild(theadCel)
+                console.log();
+            } else {
+                const theadCel = document.createElement('th')
+                const cellText = document.createTextNode(lookup[key].innerHTML.slice(0, -1));
+                theadCel.appendChild(cellText);
+                tableHeadRow.appendChild(theadCel)
+            }
+        });
+        // creating all cells
+        studentsDataArray.forEach((studentsData) => {
+            // creates a table row
+            const row = document.createElement('tr');
+            for (let studentKey in studentsData) {
+                // Create a <td> element and a text node, make the text
+                // node the contents of the <td>, and put the <td> at
+                // the end of the table row
+                const cell = document.createElement('td');
+                const cellText = document.createTextNode(studentsData[studentKey]);
+                cell.appendChild(cellText);
+                row.appendChild(cell);
+            }
+            // add the row to the end of the table body
+            tblBody.appendChild(row);
+        });
+        // put the <thead> and <tbody> in the <table>
+        tbl.appendChild(tableHeadRow);
+        tbl.appendChild(tblBody);
+        // sets the border attribute of tbl to 2;
+        tbl.setAttribute("border", "2");
+        // const ul = document.createElement('ul');
+        // studentsDataArray.forEach(user => {
+        //     let listItem = document.createElement('li');
+        //     let textNode = document.createTextNode(`${user.fname} ${user.lname}`);
+        //     listItem.appendChild(textNode);
+        //     ul.appendChild(listItem);
+        // });
+        document.querySelector('#resultTable').innerHTML = "";
+        document.querySelector('#resultTable').appendChild(tbl);
+    }
+    // function callBackFunction(){
+    //     console.log('I am a callback Function');
+    // }
+    // function valiDateIsUserExistWithGivenAdhar(adhar,callbackFunc) {
+    //     callbackFunc();
+    //     if (adhar) {
+    //         return true;
+    //     } else {
+    //         return false;
+    //     }
+    // }
+    // setTimeout(() => {
+    //     alert('i have run after 5000 ms');
+    // }, 5000);
+    // console.log('call after set time out');
+    // const userAlreadyExist=valiDateIsUserExistWithGivenAdhar('hai',callBackFunction);
+    const mobileNoRegEx = /^[+]*[(+]{0,1}[0-9]{1,4}[)]{0,1}[\\s0-9]*$/gm;
+    const aadharNoRegEx = /^\d{4}\s\d{4}\s\d{4}$/gm;
+    const capitalLetterRegEx = /^[A-Z]+$/gm;
+    const onlyAlphabetsRegEx = /^[A-Za-z ]+$/gm;
+    document.querySelector('#phoneNumber').addEventListener('change', function (event) {
+        if (event.target.value && mobileNoRegEx.test(event.target.value) == false) {
+            alert('You have Entered in-correct input')
+            event.target.value = '';
+        }
+    });
+    document.querySelector('.capital-letters').addEventListener('keyup', function (event) {
+        if (event.target.value && capitalLetterRegEx.test(event.target.value) == false) {
+            if (onlyAlphabetsRegEx.test(event.target.value) == false) {
+                alert('You have Entered in-correct input')
+                event.target.value = event.target.value.substr(0, event.target.value.length - 1);
+            } else {
+                event.target.value = event.target.value.toUpperCase();
+            }
+        }
+    });
+    document.querySelector('#adharNumber').addEventListener('change', function (event) {
+        if (event.target.value && aadharNoRegEx.test(event.target.value) == false) {
+            alert('You have Entered in-correct input')
+            event.target.value = '';
+        }
+    });
+</script>
+
+</html>
