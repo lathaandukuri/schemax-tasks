@@ -1,0 +1,56 @@
+<html>
+    <head>
+        <body>
+            <div id = "table"></div>
+        </body>
+        <script>
+           fetch("https://api.github.com/users")
+.then((data)=>{
+    return data.json();
+})
+.then ((users)=>{
+    getDynamicTable(users)
+});
+function getDynamicTable(users){
+    const tbl = document.createElement('table');
+    const tblHead = document.createElement('thead');
+    const tblBody = document.createElement('tbody');
+    const tableHeadRow = document.createElement('tr');
+    console.log(tbl,tblHead,tblBody,tableHeadRow);
+    Object.keys(users[0]).forEach((bin)=>{
+        if(bin ==='Source code managers'){
+            const theadCel = document.createElement('th');
+            const cellText = document.createTextNode(bin);
+            theadCel.appendChild(cellText);
+            tableHeadRow.appendChild(theadCel)
+            console.log();
+        }else{
+            const theadCel = document.createElement('th');
+            const cellText = document.createTextNode(bin);
+            console.log(theadCel,cellText);
+            theadCel.appendChild(cellText);
+            tableHeadRow.appendChild(theadCel);
+        }
+    });
+    users.forEach((developersBin) => {
+        const row = document.createElement('tr');
+        for( developersData in developersBin){
+            const cell = document.createElement('td');
+            const cellText = document.createTextNode(developersBin[developersData]);
+            cell.appendChild(cellText);
+            row.appendChild(cell);
+        }
+        tblBody.appendChild(row);
+    });
+    tbl.appendChild(tableHeadRow);
+    tbl.appendChild(tblBody);
+    tbl.setAttribute("border","2");
+    document.querySelector('#table').innerHTML = "";
+    document.querySelector('#table').appendChild(tbl);
+}
+        </script>
+    </head>
+    <body>
+
+    </body>
+</html>
