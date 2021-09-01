@@ -1,0 +1,57 @@
+import React  from 'react'
+import './css/todo.css'
+
+
+
+function Form(props) {
+    return (
+        <main>
+            <h1> User registeration form</h1>
+            <form className="inputForm">
+                <input
+                className="text"
+                onChange={props.handleChange}
+                name="firstName"
+                placeholder="First Name"
+                value={props.firstName}
+                />
+                <br />
+                <input
+                className="text"
+                onChange={props.handleChange}
+                name="lastName"
+                placeholder="Last Name"
+                value={props.lastName}
+                />
+                <label>
+                    <input
+                    className="radiobutton"
+                    type="radio"
+                    name="gender"
+                    value="male"
+                    checked={props.gender === "male"}
+                    onChange={props.handleChange}
+                    />
+                    male
+                </label>
+                <label>
+                    <input
+                    className="radiobutton"
+                    type="radio"
+                    name="gender"
+                    value="female"
+                    checked={props.gender === "female"}
+                    onChange={props.handleChange}
+                    />
+                    Female
+                </label>
+                <br />
+                <button className="submit">Submit</button>
+            </form>
+        </main>    
+    )
+    }
+
+export default Form
+
+
